@@ -15,7 +15,7 @@ if (WIN32)
 endif ()
 
 target_include_directories(
-  game_host PRIVATE # Needed for the generated file game_u.h
-                              ${CMAKE_CURRENT_BINARY_DIR})
+  game_host PRIVATE # Needed for #include "../shared.h"
+                    ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(game_host openenclave::oehost)

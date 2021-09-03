@@ -6,7 +6,7 @@ enclave {
     from "platform.edl" import *;
 
     trusted {
-        public void enclave_guessing_game();
+        public void enclave_game();
     };
 
     untrusted {

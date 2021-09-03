@@ -1,15 +1,13 @@
 cmake_minimum_required(VERSION 3.11)
 
 if (LVI_MITIGATION MATCHES ControlFlow)
-  # Configure the cmake to use customized compilation toolchain.
-  # This package has to be added before `project()`.
-  find_package(OpenEnclave-LVI-Mitigation CONFIG REQUIRED)
-else ()
   # Setting the cmake compiler when LVI mitigation is not enabled. If the CC
   # environment variable has been specified or the if CMAKE_C_COMPILER cmake
   # variable has been passed to cmake, use the C compiler that has been specified.
   # Otherwise, prefer clang. Same for C++ compiler. This must be done before
   # the `project` command.
+  find_package(OpenEnclave-LVI-Mitigation CONFIG REQUIRED)
+else ()
   if (UNIX)
     if (NOT DEFINED ENV{CC} AND NOT DEFINED CMAKE_C_COMPILER)
       find_program(CMAKE_C_COMPILER clang-10 clang)
@@ -20,16 +18,14 @@ else ()
   endif ()
 endif ()
 
-project("Pluggable Allocator Sample" LANGUAGES C CXX)
+project("guessing game" LANGUAGES C CXX)
 
 # Currently the `OpenEnclave` package depends on `project()`.
-find_package(OpenEnclave CONFIG REQUIRED)
-
 set(CMAKE_CXX_STANDARD 11)
+find_package(OpenEnclave CONFIG REQUIRED)
 set(OE_CRYPTO_LIB
     mbedtls
     CACHE STRING "Crypto library used by enclaves.")
-
 add_subdirectory(enclave)
 add_subdirectory(host)
 

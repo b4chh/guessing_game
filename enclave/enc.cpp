@@ -8,7 +8,7 @@
 // This is the function that the host calls. It prints
 // a message in the enclave before calling back out to
 // the host to print a message from there too.
-void enclave_guessing_game()
+void enclave_game()
 {
     // Print a message from the enclave. Note that this
     // does not directly call fprintf, but calls into the
